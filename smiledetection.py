@@ -41,3 +41,21 @@ while True:
 
     else:
         smile_count=max(0,smile_count-1)
+
+    if smile_count>=REQUIRED_FRAMES:
+        cv2.putText(frame,"SMILE DETECTED!",(30,50),cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),3)
+
+    else:
+        cv2.putText(frame,"NO Smile",(30,50),cv2.FONT_HERSHEY_SIMPLEX,1,(0,0,255),3)
+
+    cv2.putText(frame,"Smile confidence:"+ str(smile_count)+ "/5",(30,90),cv2.FONT_HERSHEY_SIMPLEX,0.7,(255,255,255),2)
+
+    cv2.imshow("Stable smile detector",frame)
+
+    key=cv2.waitKey(10)
+
+    if key==27:
+        break
+
+webcam.release()
+cv2.destroyAllWindows()
